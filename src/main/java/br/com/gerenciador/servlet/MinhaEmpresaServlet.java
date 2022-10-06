@@ -1,5 +1,6 @@
 package br.com.gerenciador.servlet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,8 @@ public class MinhaEmpresaServlet extends HttpServlet {
         Banco banco = new Banco();
         banco.adiciona(empresa);
 
-        PrintWriter out = resp.getWriter();
-        out.println("<html><body>Empresa " + nomeEmpresa + " cadastrada com sucesso!</body></html>");
+       RequestDispatcher rd = req.getRequestDispatcher("/novaEmpresaCriada.jsp");
+       req.setAttribute("empresa", empresa.getNome());
+       rd.forward(req, resp);
     }
 }
