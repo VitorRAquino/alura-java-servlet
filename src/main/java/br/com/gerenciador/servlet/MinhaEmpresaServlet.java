@@ -15,9 +15,14 @@ public class MinhaEmpresaServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Cadastrando nova Empresa");
+
         String nomeEmpresa = req.getParameter("nome");
-        String nomeEmpresa2 = req.getParameter("nome2");
-        System.out.println(nomeEmpresa2);
+        Empresa empresa = new Empresa();
+        empresa.setNome(nomeEmpresa);
+
+        Banco banco = new Banco();
+        banco.adiciona(empresa);
+
         PrintWriter out = resp.getWriter();
         out.println("<html><body>Empresa " + nomeEmpresa + " cadastrada com sucesso!</body></html>");
     }
