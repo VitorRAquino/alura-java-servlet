@@ -27,8 +27,6 @@ public class NovaEmpresaServlet extends HttpServlet {
         Banco banco = null;
         String error = null;
 
-        RequestDispatcher rd = req.getRequestDispatcher("/ListaEmpresas");
-
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             dataEmpresaAsDate = sdf.parse(dataEmpresa);
@@ -41,11 +39,16 @@ public class NovaEmpresaServlet extends HttpServlet {
             banco.adiciona(empresa);
 
             req.setAttribute("empresa", empresa.getNome());
+            resp.sendRedirect("ListaEmpresas");
+
+
+           // RequestDispatcher rd = req.getRequestDispatcher("/ListaEmpresas");
+           // rd.forward(req, resp);
 
         } catch (ParseException e) {
             error = e.getMessage();
             req.setAttribute("error", error);
         }
-        rd.forward(req, resp);
+
     }
 }
