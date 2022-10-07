@@ -12,11 +12,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @WebServlet(name = "MinhaEmpresaServlet", value = "/novaEmpresa")
-public class MinhaEmpresaServlet extends HttpServlet {
+public class NovaEmpresaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Cadastrando nova Empresa");
 
         String nomeEmpresa = req.getParameter("nome");
@@ -27,7 +27,7 @@ public class MinhaEmpresaServlet extends HttpServlet {
         Banco banco = null;
         String error = null;
 
-        RequestDispatcher rd = req.getRequestDispatcher("/novaEmpresaCriada.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/ListaEmpresas");
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -35,6 +35,7 @@ public class MinhaEmpresaServlet extends HttpServlet {
 
             empresa = new Empresa();
             empresa.setNome(nomeEmpresa);
+            empresa.setDataAbertura(dataEmpresaAsDate);
 
             banco = new Banco();
             banco.adiciona(empresa);
@@ -45,7 +46,6 @@ public class MinhaEmpresaServlet extends HttpServlet {
             error = e.getMessage();
             req.setAttribute("error", error);
         }
-
         rd.forward(req, resp);
     }
 }
