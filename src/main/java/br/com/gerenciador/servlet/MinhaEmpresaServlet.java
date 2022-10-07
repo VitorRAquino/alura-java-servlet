@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet(name = "MinhaEmpresaServlet", value = "/novaEmpresa")
 public class MinhaEmpresaServlet extends HttpServlet {
@@ -18,14 +20,32 @@ public class MinhaEmpresaServlet extends HttpServlet {
         System.out.println("Cadastrando nova Empresa");
 
         String nomeEmpresa = req.getParameter("nome");
-        Empresa empresa = new Empresa();
-        empresa.setNome(nomeEmpresa);
+        String dataEmpresa = req.getParameter("data");
 
-        Banco banco = new Banco();
-        banco.adiciona(empresa);
+        Date dataEmpresaAsDate = null;
+        Empresa empresa = null;
+        Banco banco = null;
+        String error = null;
 
-       RequestDispatcher rd = req.getRequestDispatcher("/novaEmpresaCriada.jsp");
-       req.setAttribute("empresa", empresa.getNome());
-       rd.forward(req, resp);
+        RequestDispatcher rd = req.getRequestDispatcher("/novaEmpresaCriada.jsp");
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            dataEmpresaAsDate = sdf.parse(dataEmpresa);
+
+            empresa = new Empresa();
+            empresa.setNome(nomeEmpresa);
+
+            banco = new Banco();
+            banco.adiciona(empresa);
+
+            req.setAttribute("empresa", empresa.getNome());
+
+        } catch (ParseException e) {
+            error = e.getMessage();
+            req.setAttribute("error", error);
+        }
+
+        rd.forward(req, resp);
     }
 }
