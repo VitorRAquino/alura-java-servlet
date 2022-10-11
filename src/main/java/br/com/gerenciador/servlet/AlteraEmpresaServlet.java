@@ -1,5 +1,8 @@
 package br.com.gerenciador.servlet;
 
+import br.com.gerenciador.modelo.Banco;
+import br.com.gerenciador.modelo.Empresa;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +13,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "MinhaEmpresaServlet", value = "/novaEmpresa")
-public class NovaEmpresa extends HttpServlet {
+@WebServlet(name = "AlteraEmpresa", value = "/alteraEmpresa")
+public class AlteraEmpresaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Cadastrando nova Empresa");
+
 
         String nomeEmpresa = req.getParameter("nome");
         String dataEmpresa = req.getParameter("data");
+        String paramId = req.getParameter("id");
+        Integer id = Integer.valueOf(paramId);
 
         Date dataEmpresaAsDate = null;
         Empresa empresa = null;
@@ -30,24 +34,19 @@ public class NovaEmpresa extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             dataEmpresaAsDate = sdf.parse(dataEmpresa);
 
-            empresa = new Empresa();
+            banco = new Banco();
+            empresa = banco.buscaEmpresaPorId(id);
             empresa.setNome(nomeEmpresa);
             empresa.setDataAbertura(dataEmpresaAsDate);
 
-            banco = new Banco();
-            banco.adiciona(empresa);
-
-            req.setAttribute("empresa", empresa.getNome());
             resp.sendRedirect("listaEmpresas");
 
-
-           // RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
-           // rd.forward(req, resp);
 
         } catch (ParseException e) {
             error = e.getMessage();
             req.setAttribute("error", error);
         }
+
 
     }
 }
