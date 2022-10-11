@@ -1,8 +1,9 @@
-<%@ page import="br.com.gerenciador.servlet.Empresa" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.List, br.com.gerenciador.servlet.RemoveEmpresa" %>
+<%@ page import="java.util.List, br.com.gerenciador.servlet.Empresa" %>
 
-<!DOCTYPE hmtl>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="ISO-8859-1">
@@ -14,11 +15,15 @@
 </c:if>
 <p>Lista de empresas: <br/>
 <ul>
-
     <c:forEach items="${empresas}" var="empresa">
-        <li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/></li>
+        <c:url value="/removeEmpresa?id=${empresa.id}" var="linkRemoveEmpresa"/>
+        <c:url value="/mostraEmpresa?id=${empresa.id}" var="linkMostraEmpresa"/>
+        <li>
+            ${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/>
+            <a href="${linkMostraEmpresa}">edita</a>
+            <a href="${linkRemoveEmpresa}">remove</a>
+        </li>
     </c:forEach>
 </ul>
-
 </body>
 </html>

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "ListaEmpresas", value = "/ListaEmpresas")
+@WebServlet(name = "ListaEmpresas", value = "/listaEmpresas")
 public class ListaEmpresas extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
