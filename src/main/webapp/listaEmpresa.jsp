@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Java Standard Taglib</title>
+    <title>Lista de Empresas</title>
 </head>
 <body>
 <c:if test="${not empty empresa}">
