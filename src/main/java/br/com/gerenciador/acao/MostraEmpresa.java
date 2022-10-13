@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class MostraEmpresa {
+public class MostraEmpresa implements Acao{
 
-    public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println("mostrando dados da empresa");
 
@@ -24,7 +24,6 @@ public class MostraEmpresa {
         Empresa empresa = banco.buscaEmpresaPorId(id);
         request.setAttribute("empresa", empresa);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-        rd.forward(request, response);
+        return "forward:formAlteraEmpresa.jsp";
     }
 }

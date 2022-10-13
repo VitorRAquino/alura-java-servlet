@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class RemoveEmpresa {
+public class RemoveEmpresa implements Acao {
 
-    public void executa(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         System.out.println("removendo empresa");
 
@@ -18,6 +18,6 @@ public class RemoveEmpresa {
         Banco banco = new Banco();
         banco.removeEmpresa(id);
 
-        response.sendRedirect("entrada?acao=ListaEmpresas");
+        return "redirect:entrada?acao=ListaEmpresas";
     }
 }
