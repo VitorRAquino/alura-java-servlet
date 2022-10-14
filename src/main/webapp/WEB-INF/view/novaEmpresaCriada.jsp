@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
+<c:import url="logout-parcial.jsp"/>
 <ul>
     <c:if test="${not empty empresa}">
         <p>Empresa ${ empresa } cadastrada com sucesso!</p>
