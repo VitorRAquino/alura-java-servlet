@@ -9,12 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c53c4b0-4870-44f8-bf36-cad7ca0a4693" name="Changes" comment="12.HttpSession">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/gerenciador/acao/ListaEmpresas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/gerenciador/acao/ListaEmpresas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/gerenciador/servlet/UnicaEntradaServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/gerenciador/servlet/UnicaEntradaServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0c53c4b0-4870-44f8-bf36-cad7ca0a4693" name="Changes" comment="12.HttpSession" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
